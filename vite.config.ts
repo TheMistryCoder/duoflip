@@ -14,7 +14,7 @@ export default defineConfig({
     postcss: path.resolve(__dirname, "postcss.config.cjs"), // postcss config inside client/
   },
   build: {
-    outDir: path.resolve(__dirname, "../dist"), // build output outside client folder
+    outDir: "dist", // relative to client folder (repo root)
     emptyOutDir: true,
   },
   server: {
