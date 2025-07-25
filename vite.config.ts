@@ -4,14 +4,14 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  root: ".", // Current folder (client/)
+  root: ".", // Root project folder
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // src folder inside client/
+      "@": path.resolve(__dirname, "src"), // src folder
     },
   },
   css: {
-    postcss: path.resolve(__dirname, "postcss.config.cjs"), // postcss config inside client/
+    postcss: path.resolve(__dirname, "postcss.config.cjs"), // postcss config
   },
   build: {
     outDir: "dist", // relative to client folder (repo root)
