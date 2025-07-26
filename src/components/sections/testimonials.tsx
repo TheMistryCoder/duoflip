@@ -142,13 +142,16 @@ export default function Testimonials() {
 	};
 
 	return (
-		<section className="scroll-mt-20 py-20 bg-gradient-to-br from-blue-50 to-purple-50" ref={ref}>
+		<section ref={ref} role="region" aria-label="Testimonial Carousel" className="scroll-mt-20 py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+			{" "}
 			<div className="site-container">
 				<motion.div className="text-center mb-20" initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.8 }}>
 					<div className="inline-flex items-center px-4 py-2 bg-pink-100 rounded-full mb-6">
 						<span className="text-sm font-semibold text-pink-700 tracking-wider uppercase">Testimonials</span>
 					</div>
-					<h2 className="text-slate-800 mb-6">Trusted by Educational Professionals</h2>
+					<h2 id="testimonial-heading" className="text-slate-800 mb-6">
+						Trusted by Educational Professionals
+					</h2>
 					<p className="section-subtitle max-w-4xl mx-auto">Hear directly from teachers, SEN coordinators, and head teachers about their transformative experiences with Duo Flip</p>
 				</motion.div>
 
