@@ -70,6 +70,9 @@ export default function Testimonials() {
 	const [current, setCurrent] = useState(0);
 	const [slideCount, setSlideCount] = useState(0);
 	const [isHovered, setIsHovered] = useState(false);
+	const [isPaused, setIsPaused] = useState(false);
+	const pauseTimeout = useRef<NodeJS.Timeout | null>(null);
+
 	const itemsPerSlide = 3;
 
 	useEffect(() => {
@@ -81,27 +84,50 @@ export default function Testimonials() {
 			setCurrent(api.selectedScrollSnap());
 		};
 
+		// ⏸️ Pause on user drag/swipe
+		const handleUserInteraction = () => {
+			setIsPaused(true);
+			if (pauseTimeout.current) clearTimeout(pauseTimeout.current);
+			pauseTimeout.current = setTimeout(() => setIsPaused(false), 3000);
+		};
+
 		updateSlideCount();
 		api.on("select", () => {
 			setCurrent(api.selectedScrollSnap());
 		});
 
+		api.on("pointerDown", handleUserInteraction); // Mobile + Desktop
+		api.on("scroll", handleUserInteraction); // Fallback for touch devices
+
 		return () => {
 			api.off("select", updateSlideCount);
+			api.off("pointerDown", handleUserInteraction);
+			api.off("scroll", handleUserInteraction);
 		};
 	}, [api]);
 
 	// Auto-scroll functionality
 	useEffect(() => {
-		if (!api || isHovered) return;
+		if (!api || isHovered || isPaused) return;
 
-		const interval = setInterval(() => {
-			const nextIndex = (current + 1) % slideCount;
-			api.scrollTo(nextIndex);
-		}, 4000);
+		let interval: NodeJS.Timeout | null = null;
 
-		return () => clearInterval(interval);
-	}, [api, current, slideCount, isHovered]);
+		const startAutoplay = () => {
+			if (interval) clearInterval(interval);
+			interval = setInterval(() => {
+				const nextIndex = (api.selectedScrollSnap() + 1) % api.scrollSnapList().length;
+				api.scrollTo(nextIndex, { duration: 0.1 } as any);
+			}, 700);
+		};
+
+		startAutoplay(); //
+		api.on("reInit", startAutoplay); // fallback if Embla reinitialises
+
+		return () => {
+			if (interval) clearInterval(interval);
+			api.off("reInit", startAutoplay);
+		};
+	}, [api, isHovered, isPaused]);
 
 	const scrollToPrevious = () => {
 		api?.scrollPrev();
