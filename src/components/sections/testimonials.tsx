@@ -139,7 +139,7 @@ export default function Testimonials() {
 						<CarouselContent className="-ml-2 md:-ml-4">
 							{testimonials.map((testimonial, index) => (
 								<CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-									<div className="bg-white rounded-xl p-6 h-full">
+									<div className="bg-white rounded-xl p-6 h-full relative">
 										<div className="flex items-center mb-4">
 											<img src={testimonial.image} alt={`${testimonial.name} profile`} className="w-12 h-12 rounded-full mr-4 object-cover ring-2 ring-slate-100" />
 											<div>
@@ -153,7 +153,7 @@ export default function Testimonials() {
 												<Star key={i} className="w-4 h-4 fill-current" />
 											))}
 										</div>
-										<Quote className={`absolute top-4 right-4 w-6 h-6 ${testimonial.quoteColor} opacity-10`} />
+										<Quote className={`absolute top-4 right-4 w-6 h-6 ${testimonial.quoteColor} opacity-30`} />
 									</div>
 								</CarouselItem>
 							))}
