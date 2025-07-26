@@ -70,6 +70,7 @@ export default function Testimonials() {
 	const [current, setCurrent] = useState(0);
 	const [slideCount, setSlideCount] = useState(0);
 	const [isHovered, setIsHovered] = useState(false);
+	const itemsPerSlide = 3;
 
 	useEffect(() => {
 		if (!api) return;
@@ -130,7 +131,7 @@ export default function Testimonials() {
 						setApi={setApi}
 						className="w-full"
 						opts={{
-							align: "start",
+							align: "center",
 							loop: true,
 							skipSnaps: false,
 							dragFree: false,
@@ -153,7 +154,7 @@ export default function Testimonials() {
 												<Star key={i} className="w-4 h-4 fill-current" />
 											))}
 										</div>
-										<Quote className={`absolute top-4 right-4 w-6 h-6 ${testimonial.quoteColor} opacity-30`} />
+										<Quote className={`absolute top-4 right-4 w-6 h-6 transition-all duration-300 ${index === current ? "text-pink-500" : "text-slate-200"}`} />
 									</div>
 								</CarouselItem>
 							))}
