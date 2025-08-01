@@ -254,7 +254,7 @@ export default function Contact() {
 					<div className="space-y-8">
 						<div>
 							<h3 className="text-2xl font-semibold mb-4">Get In Touch</h3>
-							<p className="text-blue-100 leading-relaxed">We'd be delighted to hear from you and help transform learning in your school. Our team provides personalized support to ensure Duo Flip meets your specific educational needs.</p>
+							<p className="text-blue-100 leading-relaxed">We&rsquo;d be delighted to hear from you and help transform learning in your school. Our team provides personalized support to ensure Duo Flip meets your specific educational needs.</p>
 						</div>
 
 						<div className="space-y-6">

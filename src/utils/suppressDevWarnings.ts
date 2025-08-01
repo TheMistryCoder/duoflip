@@ -1,4 +1,12 @@
-// Only run this block during development — avoids affecting production builds
+import { clsx } from "clsx";
+import type { ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge"; // ✅ Add this line
+
+export function cn(...inputs: ClassValue[]): string {
+	return twMerge(clsx(...inputs));
+}
+
+// ✅ DEV-only: suppress Grammarly hydration warning
 if (process.env.NODE_ENV === "development") {
 	const originalError = console.error;
 
@@ -12,4 +20,5 @@ if (process.env.NODE_ENV === "development") {
 		originalError(...args);
 	};
 }
+
 export {};
