@@ -2,7 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Play, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { duoFlipVideoUrl } from "@/config/videoUrls";
 
 const demoFeatures = ["Transforms traditional learning into active, engaging experiences", "Encourages collaboration and social interaction among students", "Supports different learning styles and abilities inclusively", "Integrates seamlessly into existing classroom workflows"];
