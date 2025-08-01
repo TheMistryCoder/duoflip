@@ -1,0 +1,12 @@
+# Next.js build output
+.next
+
+# Node modules
+node_modules
+
+# Output logs
+pnpm-debug.log*
+eslint-*.txt
+
+# macOS system files
+.DS_Store
