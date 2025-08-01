@@ -2,28 +2,29 @@ import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 
 const config: Config = {
-	content: [
-		"./src/app/**/*.{ts,tsx}",
-		"./src/components/**/*.{ts,tsx}",
-		"./src/lib/**/*.{ts,tsx}",
-	],
-	theme: {
-		extend: {
-			colors: {
-				border: "hsl(var(--border) / <alpha-value>)",
-				input: "hsl(var(--input) / <alpha-value>)",
-				ring: "hsl(var(--ring) / <alpha-value>)",
-				background: "hsl(var(--background) / <alpha-value>)",
-				foreground: "hsl(var(--foreground) / <alpha-value>)",
-				primary: "hsl(var(--primary) / <alpha-value>)",
-			},
-		},
-	},
-	plugins: [
-		plugin(function ({ addVariant }) {
-			addVariant("hocus", ["&:hover", "&:focus"]);
-		}),
-	],
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}"
+  ],
+  theme: {
+    extend: {
+      // Define CSS variables in globals.css, then use them here safely
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: "hsl(var(--primary))"
+      }
+    }
+  },
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant("hocus", ["&:hover", "&:focus"]);
+    })
+  ]
 };
 
 export default config;
